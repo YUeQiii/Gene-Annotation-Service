@@ -147,15 +147,21 @@ class Config(object):
     AWS_S3_ACL = "private"
     AWS_S3_ENCRYPTION = "AES256"
 
+    AWS_S3_SIGNATURE_VERSION = 's3v4'
+
     AWS_GLACIER_VAULT = "ucmpcs"
 
     # AWS SNS topics
     AWS_SNS_JOB_REQUEST_TOPIC = (
-        f"arn:aws:sns:us-east-1:127134666975:{iam_username}_job_requests"
+        "arn:aws:sns:us-east-1:127134666975:yueqil_a10_job_requests"
+
     )
+    # (
+    #     f"arn:aws:sns:us-east-1:127134666975:{iam_username}_job_requests"
+    # )
 
     # AWS SQS queues
-    AWS_SQS_REQUESTS_QUEUE_NAME = ""
+    AWS_SQS_REQUESTS_QUEUE_NAME = "yueqil_a10_job_requests"
 
     # AWS DynamoDB table
     AWS_DYNAMODB_ANNOTATIONS_TABLE = f"{iam_username}_annotations"
