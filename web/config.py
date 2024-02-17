@@ -152,10 +152,7 @@ class Config(object):
     AWS_GLACIER_VAULT = "ucmpcs"
 
     # AWS SNS topics
-    AWS_SNS_JOB_REQUEST_TOPIC = (
-        "arn:aws:sns:us-east-1:127134666975:yueqil_a10_job_requests"
-
-    )
+    AWS_SNS_JOB_REQUEST_TOPIC = "arn:aws:sns:us-east-1:127134666975:yueqil_a10_job_requests"
     # (
     #     f"arn:aws:sns:us-east-1:127134666975:{iam_username}_job_requests"
     # )

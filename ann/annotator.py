@@ -13,7 +13,7 @@ import json
 import os
 import sys
 import time
-from subprocess import Popen, PIPE
+import subprocess
 from boto3.dynamodb.conditions import Key, Attr
 from botocore.exceptions import ClientError
 
@@ -116,15 +116,8 @@ def handle_requests_queue(sqs=None):
             # Launch annotation job as a background process
             # ref doc of subprocess: https://docs.python.org/3/library/subprocess.html
             # Run the AnnTools command
-            try:
-                ann_process = subprocess.Popen(
-            ['sh', '-c', 'cd {} && python run.py {} {}'.format(base_dir, local_file_abs_dir, s3_jobs_dir)]
-            )
-            except subprocess.CalledProcessError as e:
-                print("'An error occurred in the annotator process. Please review the input data and try again:", e)
-                return
+            ann_process = subprocess.Popen(['sh', '-c', 'cd {} && python run.py {} {}'.format(base_dir, local_file_abs_dir, s3_jobs_dir)])
 
-                    
             try:
                 dynamodb = boto3.resource("dynamodb",region_name=config['aws']['AwsRegionName'] )
                 table = dynamodb.Table(config['gas']['AnnotationsTable'])
